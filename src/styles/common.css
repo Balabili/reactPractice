@@ -1,0 +1,91 @@
+@import '~antd/dist/antd.css';
+
+body,
+html {
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.Duration-container {
+    border-radius: 0.25rem;
+    white-space: normal;
+}
+
+.Duration-actived {
+    background-color: #EC5343;    
+    color: #fff;
+}
+
+.Select-duration-header {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1px;
+    font-size: 0.85rem;
+    background-color: #fff;
+}
+
+.Select-duration-title {
+    margin-left: 4.16666667%;
+    font-size: 1rem;
+}
+
+.Select-seat-container {
+    background-color: #fff;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.grey {
+    background-color: grey;
+}
+
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
+}
+
+.test {
+    height: 3rem;
+    overflow: hidden;
+}
+
+.Ensure-seat {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    min-height: 1rem;
+    line-height: 1rem;
+    background-color: #EC5343;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.demo {
+    display: inline-block;
+    width: 14.2%;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+}
+
+.demo-container {
+    width: 100%;
+    overflow: scroll;
+    height: 18rem;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.Duration-header {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
