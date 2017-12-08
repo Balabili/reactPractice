@@ -1,13 +1,9 @@
 import React from 'react';
-import { Col, Row } from 'antd/lib/grid';
 
 class SelectSeatHeader extends React.Component {
   constructor(props) {
     super(props);
     this.changeDuration = this.changeDuration.bind(this);
-    this.state = {
-
-    }
   }
 
   changeDuration(e) {
@@ -17,16 +13,17 @@ class SelectSeatHeader extends React.Component {
 
   render() {
     const durationList = this.props.durationList.map((item, index) =>
-      <Row key={index} data-id={item.id} onClick={this.changeDuration}>
-        <Col offset={1} span={20} className={`Duration-container ${item.selected ? 'Duration-actived' : ''}`} >
-          {item.name}
-        </Col>
-      </Row>
+      <div key={index} data-id={item.id} onClick={this.changeDuration}
+        className={`Duration-container ${item.selected ? 'Duration-actived' : ''}`} >
+        {item.name}
+      </div>
     );
     return (
       <div className="Select-duration-header">
         <div className="Select-duration-title">选择时段</div>
-        {durationList}
+        <div className="Select-duration-content">
+          {durationList}
+        </div>
       </div>
     );
   }

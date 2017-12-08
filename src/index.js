@@ -1,18 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk'
 import routes from './router';
 import registerServiceWorker from './registerServiceWorker';
 import reducer from './reducer';
-import { addTodo } from './actions'
+import './styles/common.css';
 
 const store = createStore(
-  reducer
+  reducer,
+  applyMiddleware(thunk)
 );
 
 store.subscribe(() => {
-  debugger;
   console.log(store.getState());
 });
 

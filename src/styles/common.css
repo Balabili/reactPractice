@@ -1,39 +1,91 @@
 @import '~antd/dist/antd.css';
 
-body,
 html {
-    background-color: #f5f5f5;
+    font-size: 16px;
 }
 
 ::-webkit-scrollbar {
     display: none;
 }
 
-.Duration-container {
-    border-radius: 0.25rem;
-    white-space: normal;
+#root {
+    height: 100%;
 }
 
-.Duration-actived {
-    background-color: #EC5343;    
-    color: #fff;
+.Position-relative {
+    position: relative;
+}
+
+/* 选座 */
+
+#selectSeatRoot {
+    position: relative;
+    height: 100%;
+    background-color: #f5f5f5;
 }
 
 .Select-duration-header {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+    padding: 0.75rem 0.5rem;
     margin-bottom: 1px;
     font-size: 0.85rem;
     background-color: #fff;
 }
 
 .Select-duration-title {
-    margin-left: 4.16666667%;
     font-size: 1rem;
 }
 
+.Select-duration-content {}
+
+.Duration-container {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    margin-top: 0.5rem;
+    max-width: 91%;
+    border: 1px solid #f5f5f5;
+    border-radius: 0.25rem;
+    white-space: normal;
+}
+
+.Duration-actived {
+    background-color: #EC5343;
+    color: #fff;
+}
+
 .Select-seat-container {
+    padding: 0.5rem;
     background-color: #fff;
+}
+
+.Select-seat-title {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.Apply-user-count {
+    color: #EC5343;
+}
+
+.Select-seat-description {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.Select-seat-description-item {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+}
+
+.Select-seat-description img {
+    width: 1.5rem;
+    height: 1.1rem;
+    margin-right: 0.5rem;
 }
 
 .hidden {
@@ -52,7 +104,7 @@ html {
     background-color: red;
 }
 
-.test {
+.Row-height {
     height: 3rem;
     overflow: hidden;
 }
@@ -67,15 +119,16 @@ html {
     color: #fff;
 }
 
-.demo {
-    display: inline-block;
+.Seat-item {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 14.2%;
-    height: 3rem;
-    line-height: 3rem;
-    text-align: center;
+    height: 100%;
 }
 
-.demo-container {
+.Seat-container {
     width: 100%;
     overflow: scroll;
     height: 18rem;
@@ -88,4 +141,825 @@ html {
 .Duration-header {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+}
+
+/* 电影等选座 */
+
+.Store-seat-container {
+    padding: 0.5rem;
+    min-height: 30rem;
+    background-color: #f5f5f5;
+}
+
+.Store-seat-container header {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.Store-seat-header-date {
+    color: #B2B2B2;
+}
+
+.Store-Seat-container {
+    min-height: 10rem;
+    width: 100%;
+    margin: 2rem 0;
+    background-color: #fff;
+}
+
+.Store-seat-position-container {
+    color: #B6B6B6;
+    font-size: 0.9rem;
+}
+
+.Store-seat-position-container div {
+    color: black;
+}
+
+.Store-ensure-select-container {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    height: 3rem;
+}
+
+.Store-seat-row {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    margin-top: 0.2rem;
+}
+
+.Store-seat-item {
+    display: inline-block;
+    width: 9%;
+    height: 1.5rem;
+    background-size: 100% 100%;
+}
+
+.Store-select-seat-list {
+    margin-right: 0.2rem;
+}
+
+.Store-price {
+    color: #B6B6B6;
+}
+
+.store-total-price {
+    color: #EC5343;
+    font-size: 1rem;
+}
+
+.Store-ensure-btn {
+    background-color: #EC5343;
+    color: #fff;
+}
+
+/* 课程表页面 */
+
+.Schedule-filter-container {
+    width: 90%;
+    margin: 5px auto 10px;
+    border-top: 1px solid #E7E7E7;
+    border-bottom: 1px solid #E7E7E7;
+    font-size: 1rem;
+    color: #AAAAAA;
+}
+
+.Schedule-grid-container {
+    width: 95%;
+    margin: 0 auto;
+    border: 1px solid #E4E4E4;
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+.Schedule-filter-condition-item {
+    display: flex;
+    display: -webkit-flex;
+    align-items: flex-start;
+    line-height: 2rem;
+}
+
+.Schedule-filter-condition-item-title {
+    height: 2rem;
+    width: 15%;
+}
+
+.Schedule-filter-condition-item-list {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    width: 85%;
+}
+
+.Schedule-filter-condition-item-list li {
+    margin-right: 10px;
+}
+
+.Condition-tab-active {
+    color: red;
+}
+
+/* 表格 */
+
+.Header-container {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+    border-bottom: 1px solid #E4E4E4;
+}
+
+.Selector-month-container {
+    margin-left: 0.5rem;
+    min-width: 7rem;
+}
+
+.Selector-month-container .ant-select-selection {
+    border: 0;
+    background-color: inherit;
+    color: red;
+    font-size: 1rem;
+}
+
+.Selector-month-container .ant-select-arrow {
+    font-size: 1rem;
+    color: red;
+    margin-top: -0.5rem;
+}
+
+.Select-location {
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    color: #B4B4B4;
+}
+
+.Schedule-gird-container {
+    width: 100%;
+}
+
+.Schedule-header {
+    display: flex;
+    display: -webkit-flex;
+    height: 3rem;
+    width: 100%;
+    border-bottom: 1px solid #E4E4E4;
+}
+
+.Schedule-body-section-sidebar,
+.Schedule-header-sidebar {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    text-align: center;
+    width: 8%;
+    border-right: 1px solid #E4E4E4;
+    font-size: 1rem;
+}
+
+.Schedule-header-content {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    width: 91%;
+    color: #B6B6B6;
+}
+
+.Week-column-title-today {
+    color: red;
+}
+
+.Week-column-title-active {
+    color: black;
+}
+
+.Week-column-title {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Week-column {
+    width: 14%;
+}
+
+.Schedule-body-section-container {
+    display: flex;
+    display: -webkit-flex;
+    border-bottom: 1px solid #E4E4E4;
+    color: #222;
+}
+
+.Teacher-schedule-body-section-content {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    align-items: center;
+    width: 91%;
+}
+
+.Schedule-body-section-content {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    width: 91%;
+}
+
+.Schedule-body-lesson-section {
+    padding: 0 1px 2px;
+    width: 14%;
+    word-break: break-all;
+}
+
+.Schedule-body-teacher-lesson-section {
+    width: 100%;
+    text-align: center;
+}
+
+.Schedule-body-teacher-lesson-section-placename {
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 1rem;
+    background-color: #DDDDDD;
+}
+
+.Schedule-body-teacher-lesson-section-container {
+    display: flex;
+    display: -webkit-flex;
+}
+
+.Schedule-body-lesson-component {
+    margin-top: 2px;
+    min-height: 8.1875rem;
+}
+
+.Section-no-lesson {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* 教师课程表 */
+
+.Teacher-schedule-container {
+    width: 95%;
+    margin: 0 auto;
+    border: 2px solid #F4F4F4;
+    border-radius: 10px;
+}
+
+.Teacher-schedule-header-container {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+}
+
+.Teacher-selector-container {
+    margin-left: 0.5rem;
+    min-width: 7rem;
+}
+
+.Teacher-selector-container .ant-select-selection {
+    border: 0;
+    background-color: inherit;
+    color: black;
+    font-size: 1rem;
+}
+
+.Teacher-selector-container .ant-select-arrow {
+    font-size: 1rem;
+    color: black;
+    margin-top: -0.5rem;
+}
+
+.View-all-schedule {
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    color: #B9B9B9;
+}
+
+.Teacher-schedule-header {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    background-color: #F4EAEB;
+}
+
+.Teacher-schedule-header-item {
+    line-height: 1.5rem;
+    height: 100%;
+    width: 14%;
+    text-align: center;
+    color: #A86876;
+}
+
+.Teacher-schedule-header-item-active {
+    background-color: #F9E1E1;
+    color: black;
+}
+
+.Teacher-schedule-lesson-container {
+    width: 100%;
+    background-color: #F9E1E1;
+}
+
+.Teacher-schedule-section-item {
+    display: flex;
+    display: -webkit-flex;
+    padding: 1rem 0;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.Teacher-schedule-section-duration {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+
+.Teacher-schedule-section-lesson-container {
+    width: 80%;
+}
+
+.Teacher-schedule-section-lesson-item {
+    display: flex;
+    display: -webkit-flex;
+}
+
+.Teacher-schedule-section-lesson-time {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    width: 35%;
+}
+
+.Teacher-schedule-section-lesson-name {
+    width: 60%;
+}
+
+.Teacher-schedule-section-nolesson {
+    text-align: center;
+}
+
+/* 我的日程 */
+
+.User-schedule-root {
+    background-color: #D63334;
+}
+
+.User-schedule-container {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.User-schedule-header {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    color: #fff;
+}
+
+.User-schedule-header input {
+    background-color: transparent;
+}
+
+.User-schedule-header .ant-input {
+    color: #fff;
+}
+
+.User-schedule-header .ant-calendar-picker-icon {
+    color: #fff;
+}
+
+.User-schedule-header .ant-calendar-picker-icon::after {
+    color: #fff;
+}
+
+.User-schedule-header-button {
+    border: 1px solid #fff;
+    padding: 0.2rem 0.5rem;
+    border-radius: 1.5rem;
+}
+
+.User-schedule-table {
+    margin-top: 1rem;
+    border: 1px solid #ECECEC;
+    border-radius: 8px;
+}
+
+.User-schedule-body-header {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 3rem;
+    background-color: #FFFFFF;
+    border-radius: 8px 8px 0 0;
+}
+
+.User-schedule-body-header-item {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 14%;
+}
+
+.User-schedule-body-content {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    border-top: 1px solid #ECECEC;
+    min-height: 20rem;
+    width: 100%;
+    border-radius: 0 0 8px 8px;
+    background-color: #fff;
+}
+
+.User-schedule-body-item {
+    width: 14%;
+    overflow: hidden;
+}
+
+.left-top-radius {
+    border-top-right-radius: 8px;
+}
+
+.right-top-radius {
+    border-top-right-radius: 8px;
+}
+
+.right-bottom-radius {
+    border-bottom-right-radius: 8px;
+}
+
+.left-bottom-radius {
+    border-bottom-left-radius: 8px;
+}
+
+.bg-grey {
+    background-color: #F1F1F1;
+}
+
+.User-schedule-body-item-details {
+    width: 99%;
+    margin: 1px auto;
+    padding: 3px;
+    border-radius: 4px;
+}
+
+.User-schedule-footer-title {
+    font-size: 1rem;
+    color: #BABABA;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.User-schedule-footer-item {
+    display: inline-block;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    border: 1px solid #E9E9E9;
+    border-radius: 1.5rem;
+    padding: 0 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: black;
+}
+
+/* 学校详情页 */
+
+.School-root {
+    background-color: #f5f5f5;
+}
+.School-detail-header-section {
+    padding-top: 1rem;
+    background-color: #fff;
+}
+
+.School-detail-header {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto 1rem;
+    height: 3.1rem;
+}
+
+.School-detail-header img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 4px;
+}
+
+.School-title {
+    width: 65%;
+    height: 3rem;
+    line-height: 1.5rem;
+    color: black;
+}
+
+.School-name {
+    font-size: 0.9rem;
+}
+
+.School-fans {
+    color: #767678;
+}
+
+.School-add-attention {
+    display: inline-block;
+    border: 1px solid red;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    border-radius: 1.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    text-align: center;
+    color: red;
+}
+
+.School-introduce {
+    min-height: 5rem;
+    padding-left: 1rem;
+    padding-right: 0.5rem;
+    font-size: 0.9rem;
+    color: black;
+    background-color: #f5f5f5;
+}
+
+.School-address {
+    color: #61AF47;
+}
+
+.School-description {
+    padding: 1rem 0.5rem;
+    font-size: 1rem;
+}
+
+.School-description-image-container {
+    overflow: hidden;
+}
+
+.School-description img {
+    width: 100%;
+}
+
+.School-description-detail {
+    font-size: 0.75rem;
+}
+
+.Recommend-lesson-section {
+    background-color: #fff;
+}
+
+.Recommend-lesson-section header {
+    width: 95%;
+    margin: 1rem auto;
+    font-size: 1rem;
+}
+
+.Recommend-lesson-list-container {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 95%;
+    margin: 0 auto;
+    height: 3rem;
+}
+
+.Recommend-lesson-item {
+    border: 1px solid #f5f5f5;
+    margin-bottom: 0.2rem;
+    height: 10rem;
+    width: 49%;
+}
+.Recommend-lesson-item-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.Recommend-lesson-item img {
+    position: absolute;
+    width: 100%;
+}
+
+/* 课程推广 */
+
+.Template-one-container {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    height: 10rem;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+.Template-one-image {
+    height: 8rem;
+    width: 40%;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.Template-one-text-container {
+    width: 50%;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+}
+
+.Template-one-title {
+    font-size: 1.2rem;
+    color: black;
+}
+
+.Template-one-description {
+    margin-top: 0.2rem;
+    min-height: 4.5rem;
+    color: #A7A7A7;
+}
+
+.Template-one-bargin-price {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    background-color: #D43434;
+    color: #fff;
+}
+
+.Template-one-old-price {
+    margin-left: 0.5rem;
+    color: #989898;
+    text-decoration: line-through;
+}
+
+.Template-two-container {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    min-height: 10rem;
+    padding-bottom: 1.5rem;
+    width: 100%;
+    background-color: #e5e5e5;
+}
+
+.Template-two-header {
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 1.2rem;
+    color: black;
+}
+
+.Template-two-body {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.Template-two-lesson-item {
+    width: 31%;
+    background-color: #fff;
+}
+
+.Template-two-lesson-item img {
+    width: 100%;
+}
+
+.Template-two-lesson-item-name {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+.Template-two-lesson-item-price {
+    font-size: 1.1rem;
+    color: #E44744;
+}
+
+.Template-two-lesson-item-price span {
+    font-size: 0.7rem;
+}
+
+.Template-three-container {
+    min-height: 10rem;
+    background-color: #f5f5f5;
+    padding-bottom: 1rem;
+}
+
+.Template-three-image-container {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 0.5rem;
+}
+
+.Template-three-image-main {
+    width: 65%;
+    height: 10rem;
+}
+
+.Template-three-image-main img {
+    width: 100%;
+}
+
+.Template-three-image-side {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 33%;
+}
+
+.Template-three-image-side img {
+    width: 100%;
+    height: 4.8rem;
+}
+
+.Template-three-description {
+    position: relative;
+    width: 95%;
+    margin: 0.1rem auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Template-four-container {
+    min-height: 10rem;
+    padding: 0.5rem 0.5rem 1rem;
+    font-size: 0.8rem;
+    background-color: #e5e5e5;
+    color: black;
+}
+
+.Template-four-container img {
+    width: 100%;
+}
+
+.Template-four-container header {
+    font-size: 1.2rem;
+}
+
+.Template-four-lesson-description {
+    margin: 0.3rem 0;
+    color: #A3A3A3;
+}
+
+.Template-four-lesson-new-price {
+    font-size: 1rem;
+    color: #E44744;
+}
+
+.Template-four-lesson-new-price span {
+    font-size: 0.8rem;
+}
+
+.Template-four-lesson-old-price {
+    margin-left: 0.3rem;
+    text-decoration: line-through;
+    color: #A3A3A3;
+}
+
+.Template-five-container {
+    min-height: 10rem;
+    background-color: #f5f5f5;
+    padding-bottom: 1rem;
+}
+
+.Template-five-container-section {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.Template-five-container-item {
+    width: 48%;
+}
+
+.Template-five-container-item img {
+    width: 100%;
+    height: 7rem;
 }
