@@ -1,5 +1,4 @@
 import React from "react";
-import siyue from '../../images/四月是你的谎言.jpg';
 
 class TemplateOne extends React.Component {
   constructor() {
@@ -8,15 +7,17 @@ class TemplateOne extends React.Component {
   }
 
   render() {
+    const { data, tempIndex } = this.props;
+    
     return (
-      <section className='Template-one-container'>
-        <img className='Template-one-image' src={siyue} alt='xxx' />
+      <section className='Template-one-container' style={{ backgroundColor: tempIndex % 2 ? '#e5e5e5' : '#f5f5f5' }}>
+        <img className='Template-one-image' src={data.img} alt='' />
         <div className='Template-one-text-container'>
-          <div className='Template-one-title'>课程名称</div>
-          <div className='Template-one-description'>你大爷</div>
+          <div className='Template-one-title'>{data.name}</div>
+          <div className='Template-one-description'>{data.introduce}</div>
           <div>
-            <span className='Template-one-bargin-price'>4500</span>
-            <span className='Template-one-old-price'>￥4500.00</span>
+            <span className='Template-one-bargin-price'>{data.editPrice}</span>
+            <span className='Template-one-old-price'>￥{data.zeroPrice}</span>
           </div>
         </div>
       </section>

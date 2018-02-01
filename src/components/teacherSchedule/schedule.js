@@ -19,10 +19,4 @@ class TeacherSchedule extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-
-  }
-}
-
-export default connect(mapStateToProps)(TeacherSchedule);
+export default connect()(TeacherSchedule);

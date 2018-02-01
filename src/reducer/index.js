@@ -2,37 +2,69 @@ import { combineReducers } from 'redux';
 import { formatMonth } from '../utils/util';
 
 const initSeatState = {
-  userId: '',
-  duration: {},
-  isView: true,
+  idList: {},
   seatId: '',
-  seats: []
+  seats: [],
+  seatPosition: null,
+  oldSeatId: '',
+  oldSeatRequired: false
 };
 
 const seatPage = (state = initSeatState, action) => {
   switch (action.type) {
-    case 'ADD_USERID':
-      return { ...state, userId: action.userId };
-    case 'ADD_DURATION':
-      return { ...state, duration: action.duration };
-    case 'CHANGE_VIEWSEAT_STATUS':
-      return { ...state, isView: action.isView };
+    case 'ADD_CONST_ID_LIST':
+      return { ...state, idList: action.idList };
     case 'CHANGE_SELECTED_SEAT':
       return { ...state, seatId: action.seatId };
     case 'CURRENT_DURATION_SEATS':
       return { ...state, seats: action.seats };
+    case 'SELECT_SEAT_POSITION':
+      return { ...state, seatPosition: action.seatPosition };
+    case 'OLD_SEAT_ID':
+      return { ...state, oldSeatId: action.oldSeatId };
+    case 'ADD_OLD_SEATID_REQUIRED':
+      return { ...state, oldSeatRequired: action.oldSeatRequired };
     default:
       return state;
   }
 };
 
+const initBusinessSeatState = {
+  seatList: []
+};
+
+const businessSeatPage = (state = initBusinessSeatState, action) => {
+  switch (action.type) {
+    case 'BUSINESS_SELECT_SEATLIST':
+      return { ...state, seatList: action.seatList };
+    default:
+      return state;
+  }
+}
+
 const initStoreSeatState = {
-  seats: [],
-  selectedSeats: []
+  userId: '',
+  quantumId: '',
+  templateType: '1',
+  moviePrice: 0,
+  priceMap: {},
+  seats: {},
+  selectedSeats: [],
+  seatColorMap: { 'A': '#fcd9d9', 'B': '#fce7d9', 'C': '#d9e8fc', 'D': '#dbefe6', 'E': '#eae9fd' }
 }
 
 const storeSeatPage = (state = initStoreSeatState, action) => {
   switch (action.type) {
+    case 'SAVE_CURRENTUSER_ID':
+    return { ...state, userId: action.userId };
+    case 'SAVE_QUANTUM_ID':
+      return { ...state, quantumId: action.quantumId };
+    case 'CHANGE_STORE_TEMPLATE_TYPE':
+      return { ...state, templateType: action.templateType };
+    case 'ADD_STORE_SEAT_PRICE':
+      return { ...state, priceMap: action.priceMap };
+    case 'ADD_MOVIE_SINGLE_PRICE':
+      return { ...state, moviePrice: action.moviePrice };
     case 'CHANGE_STORE_SEATLIST':
       return { ...state, seats: action.seats };
     case 'CHANGE_STORE_SELECT_SEATLIST':
@@ -44,6 +76,7 @@ const storeSeatPage = (state = initStoreSeatState, action) => {
 
 const initScheduleState = {
   isTeacherView: false,
+  schoolId: '',
   lessons: [],
   lessonId: '',
   teachers: [],
@@ -61,6 +94,8 @@ const initScheduleState = {
 
 const schedulePage = (state = initScheduleState, action) => {
   switch (action.type) {
+    case 'SAVE_SCHOOL_SCHEDULE_PAGE_SCHOOLID':
+      return { ...state, schoolId: action.schoolId };
     case 'GET_VIEW_STATUS':
       return { ...state, isTeacherView: action.isTeacherView };
     case 'GET_ALL_LESSON':
@@ -94,6 +129,7 @@ const schedulePage = (state = initScheduleState, action) => {
 
 const initTeacherScheduleState = {
   teachers: [],
+  schoolId: '',
   teacherId: '',
   monday: new Date(),
   selectDay: new Date(),
@@ -102,6 +138,8 @@ const initTeacherScheduleState = {
 
 const teacherSchedulePage = (state = initTeacherScheduleState, action) => {
   switch (action.type) {
+    case 'SAVE_TEACHER_PAGE_SCHOOLID':
+      return { ...state, schoolId: action.schoolId };
     case 'GET_ALL_TEACHERS':
       return { ...state, teachers: action.teachers };
     case 'GET_CURRENT_TEACHERID':
@@ -140,12 +178,39 @@ const userSchedulePage = (state = initUserScheduleState, action) => {
   }
 }
 
+const initMultipleState = {
+  details: [],
+  extra: [],
+  school: [],
+  recommend: [],
+  teacher: []
+}
+
+const multipleShopPage = (state = initMultipleState, action) => {
+  switch (action.type) {
+    case 'GET_MULTIPLE_DETAILS':
+      return { ...state, details: action.details };
+    case 'GET_MULTIPLE_EXTRA':
+      return { ...state, extra: action.extra };
+    case 'GET_MULTIPLE_SCHOOL':
+      return { ...state, school: action.school };
+    case 'GET_MULTIPLE_RECOMMEND':
+      return { ...state, recommend: action.recommend };
+    case 'GET_MULTIPLE_TEACHER':
+      return { ...state, teacher: action.teacher };
+    default:
+      return state;
+  }
+}
+
 const reducer = combineReducers({
   seatPage,
+  businessSeatPage,
   storeSeatPage,
   schedulePage,
   teacherSchedulePage,
-  userSchedulePage
+  userSchedulePage,
+  multipleShopPage
 });
 
 export default reducer;

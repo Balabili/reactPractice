@@ -6,43 +6,48 @@ import MySchudeleHeader from '../components/userSchedule/header';
 import UserScheduleContent from '../components/userSchedule/schedule';
 import UserScheduleFooter from '../components/userSchedule/footer';
 import * as actions from '../actions/userSchedule';
-import { calculateMonday } from '../api/classSchedule';
+import { calculateMonday } from '../api/commonApi';
 import { formatDate } from '../utils/util';
+import ajax from '../utils/fetch';
+import { formatMyScheduleResultList } from '../api/commonApi';
 
 class UserSchedule extends Component {
-  constructor() {
-    super();
-    this.state = {};
+  constructor(props) {
+    super(props);
+    this.state = { userId: '' };
   }
 
   componentDidMount() {
-    const { changeCurrentMonth, changeCurrentMonday, changePlannedSchedule, changeUnPlannedSchedule } = this.props,
-      date = new Date(), currentDate = formatDate(date), currentMonday = calculateMonday(date),
-      fetchData = [
-        { week: 1, list: [{ id: '11', time: '09:00-11:00', name: '你大爷的你大爷的', type: 1 }] },
-        { week: 2, list: [{ id: '22', time: '09:00-11:00', name: '你大爷的', type: 2 }] },
-        { week: 3, list: [{ id: '33', time: '09:00-11:00', name: '你大爷的', type: 3 }] },
-        { week: 4, list: [{ id: '44', time: '09:00-11:00', name: '你大爷的', type: 2 }] },
-        { week: 5, list: [{ id: '55', time: '09:00-11:00', name: '你大爷的', type: 1 }] },
-        { week: 6, list: [{ id: '66', time: '09:00-11:00', name: '你大爷的', type: 3 }] },
-        { week: 7, list: [{ id: '77', time: '09:00-11:00', name: '你大爷的', type: 1 }, { id: '88', time: '09:00-11:00', name: '你大爷的', type: 2 }] },
-      ], unPlanData = [{ id: '888', name: '你大爷的' }, { id: '999', name: '你二爷的' }];
-    changeCurrentMonth(currentDate);
-    changeCurrentMonday(currentMonday);
-    changePlannedSchedule(fetchData);
-    changeUnPlannedSchedule(unPlanData);
+    const self = this, params = this.props.match.params, userId = params.userId;
+    this.setState({ userId: userId });
+    ajax('http://192.168.51.98:8088/app/userTimeTable', { userId: userId }).then(({ resultList, noTimeList }) => {
+      // resultList 有日期的课表    noTimeList 为安排时间的
+      const { changeCurrentMonth, changeCurrentMonday, changePlannedSchedule, changeUnPlannedSchedule } = self.props,
+        date = new Date(), currentDate = formatDate(date), currentMonday = calculateMonday(date);
+      // 保存当前月份
+      changeCurrentMonth(currentDate);
+      // 保存当前周的周一
+      changeCurrentMonday(currentMonday);
+      // 格式化表格中的数据并保存到state
+      changePlannedSchedule(formatMyScheduleResultList(resultList));
+      // 保存未安排时间的
+      changeUnPlannedSchedule(noTimeList);
+    }).catch((e) => { console.log(e); });
   }
 
   render() {
+    const state = this.state;
+
     return (
       <div className='User-schedule-root'>
+        <div className='User-schedule-bg-red'></div>
         <div className='User-schedule-container'>
-          <MySchudeleHeader></MySchudeleHeader>
+          <MySchudeleHeader userId={state.userId} />
           <div className='User-schedule-table'>
-            <ScheduleHeader></ScheduleHeader>
-            <UserScheduleContent></UserScheduleContent>
+            <ScheduleHeader />
+            <UserScheduleContent userId={state.userId} />
           </div>
-          <UserScheduleFooter></UserScheduleFooter>
+          <UserScheduleFooter />
         </div>
       </div>
     );
@@ -54,8 +59,8 @@ const mapDispatchToProps = (dispatch) => {
     changeCurrentMonth: actions.changeCurrentMonth,
     changeCurrentMonday: actions.changeCurrentMonday,
     changePlannedSchedule: actions.changePlannedSchedule,
-    changeUnPlannedSchedule: actions.changeUnPlannedSchedule
+    changeUnPlannedSchedule: actions.changeUnPlannedSchedule,
   }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(UserSchedule)
+export default connect(null, mapDispatchToProps)(UserSchedule);

@@ -1,5 +1,5 @@
 import React from 'react';
-import siyue from '../../images/四月是你的谎言.jpg';
+import imgUrl from '../../images/shuxian_moban.png';
 
 class TemplateTwo extends React.Component {
   constructor() {
@@ -8,29 +8,29 @@ class TemplateTwo extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener('DOMContentLoaded', () => {
-      let dom = document.getElementsByClassName('Template-two-lesson-item-image'), len = dom.length, width = dom[0].width + 'px';
-      for (let i = 0; i < len; i++) {
-        dom[i].style.height = width;
-        dom[i].nextSibling.style.width = width;
-      }
-    }, false);
+    let dom = document.getElementsByClassName('Template-two-lesson-item-image'), len = dom.length, width = dom[0].width + 'px';
+    for (let i = 0; i < len; i++) {
+      dom[i].style.height = width;
+      dom[i].nextSibling.style.width = width;
+    }
   }
 
   render() {
-    const arr = [1, 2, 3], lessonList = arr.map((item, index) => {
+    const { data, tempIndex } = this.props, lessonList = data.map((item, index) => {
       return (
         <div className='Template-two-lesson-item' key={index}>
-          <img className='Template-two-lesson-item-image' src={siyue} alt='xxx' />
-          <span className='Template-two-lesson-item-name'>你大爷家牌高数课程</span>
-          <span className='Template-two-lesson-item-price'><span>￥</span>2300</span>
+          <img className='Template-two-lesson-item-image' src={item.img} alt='' />
+          <span className='Template-two-lesson-item-name'>{item.name}</span>
+          <span className='Template-two-lesson-item-price'><span>￥</span>{item.editPrice || item.zeroPrice}</span>
         </div>
       );
     });
 
     return (
-      <section className='Template-two-container'>
-        <div className='Template-two-header'>热门课程</div>
+      <section className='Template-two-container' style={{ backgroundColor: tempIndex % 2 ? '#e5e5e5' : '#f5f5f5' }}>
+        <div className='Template-two-header'>
+          <img src={imgUrl} alt='' />
+          热门课程</div>
         <div className='Template-two-body'>
           {lessonList}
         </div>

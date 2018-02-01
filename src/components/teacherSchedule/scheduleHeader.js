@@ -2,8 +2,8 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/teacherSchedule';
-import { addDate } from '../../utils/util';
-import { getCurrentWeekDateList } from '../../api/classSchedule';
+import { formatDate, addDate } from '../../utils/util';
+import { getCurrentWeekDateList } from '../../api/commonApi';
 import ajax from '../../utils/fetch';
 
 class TeacherScheduleHeader extends React.Component {
@@ -17,20 +17,21 @@ class TeacherScheduleHeader extends React.Component {
     if (currentTarget.classList.length === 2) {
       return;
     }
-    const { monday, changeSelectedDay,changeTeacherLessonList } = this.props, weekIndex = +currentTarget.dataset.week, selectedDay = addDate(monday, weekIndex);
-    this.setState({ tabIndex: weekIndex });
-    changeSelectedDay(selectedDay);
-    //获取课程信息
-    //ajax
-    //changeTeacherLessonList();
+    const self = this, { monday, schoolId, teacherId, changeSelectedDay, changeTeacherLessonList } = self.props, weekIndex = +currentTarget.dataset.week,
+      selectedDay = addDate(monday, weekIndex), data = { schoolId: schoolId, teacherId: teacherId, dateTime: formatDate(selectedDay) };
+    ajax('http://192.168.51.98:8088/app/findSchoolTeacherTimetable', data).then(({ resultList }) => {
+      self.setState({ tabIndex: weekIndex });
+      changeSelectedDay(selectedDay);
+      changeTeacherLessonList(resultList[0] || {});
+    }).catch((e) => { console.log(e); });
   }
 
   render() {
-    const { monday } = this.props, currentWeek = getCurrentWeekDateList(monday, this.state.tabIndex),
+    const self = this, { monday } = self.props, currentWeek = getCurrentWeekDateList(monday, self.state.tabIndex),
       header = currentWeek.map((item, index) => {
         return (
           <div className={`Teacher-schedule-header-item ${item.isToday ? 'Teacher-schedule-header-item-active' : ''}`}
-            onClick={this.selectDay} key={index} data-week={index}>
+            onClick={self.selectDay} key={index} data-week={index}>
             <div>{item.week}</div>
             <div>{item.date}</div>
           </div>
@@ -46,15 +47,18 @@ class TeacherScheduleHeader extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  const stateData = state.teacherSchedulePage;
   return {
-    monday: state.teacherSchedulePage.monday
+    monday: stateData.monday,
+    schoolId: stateData.schoolId,
+    teacherId: stateData.teacherId
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     changeSelectedDay: actions.changeSelectedDay,
-    changeTeacherLessonList:actions.changeTeacherLessonList
+    changeTeacherLessonList: actions.changeTeacherLessonList
   }, dispatch);
 }
 

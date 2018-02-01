@@ -1,77 +1,64 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeViewSeatStatus } from '../../actions/classSeat';
 import { Row, Col } from 'antd/lib/grid';
+import Modal from 'antd/lib/modal';
 import Seats from './Seats';
-import imgUrl from '../../images/四月是你的谎言.jpg';
+import imgActived from '../../images/seat_grey.png';
+import imgSelected from '../../images/seat_green.png';
+import imgDeactived from '../../images/seat_red.png';
+import { loadURL } from '../../utils/util';
+import ajax from '../../utils/fetch';
 
 class SelectSeat extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      seatPosition: null,
-      signIn: 0
-    };
-    this.changeViewStatus = this.changeViewStatus.bind(this);
-    this.changeSeat = this.changeSeat.bind(this);
     this.saveSeat = this.saveSeat.bind(this);
   }
 
-  calculateSignInUser() {
-    let userCount = 0, seat = this.props.seats, len = seat.length;
-    for (let i = 0; i < len; i++) {
-      if (seat[i].status === 3) {
-        userCount++;
-      }
-    }
-    return userCount;
-  }
-
-  changeViewStatus() {
-    this.props.dispatch(changeViewSeatStatus(!this.props.isView));
-  }
-
-  changeSeat(position) {
-    this.setState({ seatPosition: position });
-  }
-
   saveSeat() {
-    const { courseId, seatId } = this.props, currentDurationId = this.state.seatPosition ? this.state.seatPosition.duration.id : '';
-    if (!seatId || !currentDurationId) { alert('请选择座位'); return; }
-    debugger;
+    const { seatId, idList, oldSeatId, oldSeatRequired } = this.props;
+    // 保存时没有选座的提示
+    if (!seatId) {
+      Modal.warning({
+        content: '请选择座位',
+        maskClosable: true
+      });
+      return;
+    }
+    let data = { quantumId: idList.durationId, courseId: idList.courseId, userId: idList.userId, coordinateIdNew: seatId };
+    if (oldSeatRequired && oldSeatId !== seatId) {
+      data.coordinateIdOld = oldSeatId;
+    }
+    ajax('/updateSeatState', data).then(() => {
+      // 通知安卓跳转
+      loadURL('ClassSeat://success');
+    }).catch((e) => { console.log(e); });
   }
 
   render() {
-    const selectCount = this.calculateSignInUser();
+    const { location, seatPosition, seats } = this.props;
     return (
       <div className="Select-seat-container">
         <header className='Select-seat-title'>
-          <div>黑板在座位中央</div>
-          <div>
-            已报名:
-            <span className='Apply-user-count'><span>{selectCount}/{this.props.seats.length}</span></span>
-          </div>
+          <div>{location}</div>
         </header>
         <section className='Select-seat-description'>
-          <div className='Select-seat-description-item'><img src={imgUrl} alt=''></img>可选</div>
-          <div className='Select-seat-description-item'><img src={imgUrl} alt=''></img>不可选</div>
-          <div className='Select-seat-description-item'><img src={imgUrl} alt=''></img>已选</div>
+          <div className='Select-seat-description-item'><img src={imgActived} alt=''></img>可选</div>
+          <div className='Select-seat-description-item'><img src={imgDeactived} alt=''></img>不可选</div>
+          <div className='Select-seat-description-item'><img src={imgSelected} alt=''></img>已选</div>
         </section>
-        <Seats seat={this.props.seats} isView={this.props.isView} calculatePosition={this.changeSeat} />
-        <Row>
-          <Col offset={1} span={17} className={this.state.seatPosition ? '' : 'hidden'}>
-            <Row>
+        <Seats seat={seats} />
+        <Row >
+          <Col offset={1} span={17} className={seatPosition ? '' : 'hidden'}>
+            <Row className='Select-seat-selected-title'>
               已选座位：
             </Row>
-            <Row>
-              {this.state.seatPosition ? this.state.seatPosition.duration.name : ''}
-            </Row>
-            <Row>
-              {this.state.seatPosition ? this.state.seatPosition.row : ''}排{this.state.seatPosition ? this.state.seatPosition.column : ''}座
+            <Row className='Select-seat-selected-seat'>
+              {seatPosition ? seatPosition.row : ''}排{seatPosition ? seatPosition.column : ''}座
             </Row>
           </Col>
           <Col span={6}>
-            <span className="Ensure-seat" onClick={this.changeViewStatus}>确认座位</span>
+            <span className="Ensure-seat" onClick={this.saveSeat}>确认座位</span>
           </Col>
         </Row>
       </div>
@@ -80,10 +67,14 @@ class SelectSeat extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  const stateData = state.seatPage;
   return {
-    courseId: state.seatPage.courseId,
-    seatId: state.seatPage.seatId,
-    isView: (typeof (state.seatPage.isView) === 'boolean') ? state.seatPage.isView : true
+    seatId: stateData.seatId,
+    idList: stateData.idList,
+    seats: stateData.seats,
+    oldSeatId: stateData.oldSeatId,
+    seatPosition: stateData.seatPosition,
+    oldSeatRequired: stateData.oldSeatRequired
   }
 };
 

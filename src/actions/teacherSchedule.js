@@ -1,5 +1,12 @@
 import * as types from '../constants/ActionTypes';
 
+export const saveTeacherPageSchoolId = (schoolId) => {
+  return {
+    type: types.SAVE_TEACHER_PAGE_SCHOOLID,
+    schoolId: schoolId
+  }
+}
+
 export const changeTeachers = (teachers) => {
   return {
     type: types.GET_ALL_TEACHERS,

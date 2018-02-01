@@ -1,4 +1,5 @@
 import React from 'react';
+import headerIcon from '../../images/sanjia_moban.png';
 
 class RecommendLesson extends React.Component {
   constructor(props) {
@@ -7,14 +8,16 @@ class RecommendLesson extends React.Component {
   }
 
   componentDidMount() {
-    const self = this;
-    document.addEventListener('DOMContentLoaded', () => {
-      let dom = document.getElementsByClassName('Recommend-lesson-item-image-container'), len = dom.length,
-        img = document.querySelector('.Recommend-lesson-item-image-container img'), imgWidth = img.width,
-        domHeight = Math.floor(imgWidth * 3 / 4);
-      debugger;
+    const doc = document;
+    // 计算图片宽高比例
+    doc.addEventListener('DOMContentLoaded', () => {
+      let recommendLessonDom = doc.getElementsByClassName('Recommend-lesson-item-image-container'), len = recommendLessonDom.length,
+        recommendLessonNameDom = doc.getElementsByClassName('Recommend-lesson-item-name'),
+        recommendLessonImg = doc.querySelector('.Recommend-lesson-item-image-container img'), imgWidth = recommendLessonImg.width,
+        recommendLessonDomHeight = Math.floor(imgWidth * 3 / 4), recommendLessonNameWidth = imgWidth - 16;
       for (let i = 0; i < len; i++) {
-        dom[i].style.height = domHeight + 'px';
+        recommendLessonDom[i].style.height = recommendLessonDomHeight + 'px';
+        recommendLessonNameDom[i].style.width = recommendLessonNameWidth + 'px';
       }
     }, false);
   }
@@ -25,16 +28,24 @@ class RecommendLesson extends React.Component {
         return (
           <div className='Recommend-lesson-item' key={index}>
             <div className='Recommend-lesson-item-image-container'>
-              <img src={item.img} style={{ top: self.state.positionTop }} alt='' />
+              <img src={item.img} alt='' />
+              <div className='Recommend-lesson-item-coverage'></div>
+              <div className='Recommend-lesson-item-people'>
+                {item.apply_count}/{item.sum_count}
+              </div>
             </div>
-            {item.NAME}
+            <div className='Recommend-lesson-item-name'>{item.NAME}</div>
+            <div className='Recommend-lesson-item-price'>￥{item.price}</div>
           </div>
         );
       });
 
     return (
       <section className='Recommend-lesson-section'>
-        <header>推荐课程</header>
+        <header>
+          <img className='School-detail-header-icon' src={headerIcon} alt='' />
+          <span>推荐课程</span>
+        </header>
         <div className='Recommend-lesson-list-container'>
           {lessonList}
         </div>

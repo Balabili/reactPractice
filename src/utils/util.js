@@ -26,8 +26,9 @@ const calculateAngle = function (start, end) {
 }
 
 export const touchMove = (start, end) => {
+  const distance = Math.abs(start.X - end.X);
   let angle = calculateAngle(start, end);
-  if (Math.abs(angle) > 30) {
+  if ((Math.abs(angle) > 30) || (distance < 75)) {
     return false;
   }
   if (end.X > start.X) {
@@ -148,4 +149,18 @@ export const defineMomentLocalLanguage = (moment) => {
       doy: 4  // The week that contains Jan 4th is the first week of the year.  
     }
   });
+}
+
+export const loadURL = (url) => {
+  let iFrame;
+  iFrame = document.createElement("iframe");
+  iFrame.setAttribute("src", url);
+  iFrame.setAttribute("style", "display:none;");
+  iFrame.setAttribute("height", "0px");
+  iFrame.setAttribute("width", "0px");
+  iFrame.setAttribute("frameborder", "0");
+  document.body.appendChild(iFrame);
+  // 发起请求后这个iFrame就没用了，所以把它从dom上移除掉
+  iFrame.parentNode.removeChild(iFrame);
+  iFrame = null;
 }

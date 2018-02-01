@@ -1,5 +1,12 @@
 import * as types from '../constants/ActionTypes';
 
+export const saveSchedulePageSchoolId = (schoolId) => {
+  return {
+    type: types.SAVE_SCHOOL_SCHEDULE_PAGE_SCHOOLID,
+    schoolId: schoolId
+  }
+}
+
 export const changeScheduleViewStatus = (isTeacher) => {
   return {
     type: types.GET_VIEW_STATUS,
@@ -42,7 +49,7 @@ export const getClassValidMonthList = (monthList) => {
   }
 }
 
-export const changeCurrentClassPlace = (currentPlace) => { 
+export const changeCurrentClassPlace = (currentPlace) => {
   return {
     type: types.GET_CURRENT_CLASS_PLACE,
     currentPlace: currentPlace

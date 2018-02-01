@@ -8,47 +8,60 @@ import ajax from '../utils/fetch';
 class Seat extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    // weeks周几  timeline 几点到几点  teacherLocation 教师位置
+    this.state = { weeks: '', timeline: '', teacherLocation: '' };
   }
 
   componentDidMount() {
-    const self = this, param = self.props.match.params, durationId = param.durationId, userId = param.userId;
-    ajax('/courseTimeQuantum', { courseId: durationId }).then(({ courseTimeQuantumList, seatTimeQuantumList }) => {
-      const { addUserId, addCourseDuration, changeSeats } = self.props;
+    const self = this, param = self.props.match.params, durationId = param.durationId, courseId = param.courseId, userId = param.userId;
+    ajax('/seatDetail', { quantumId: durationId, courseId: courseId }).then(({ seatDetrailsList, teacherLocation, timeOne, timeTwo }) => {
+      const { addIdList, changeSeats } = self.props;
       //后台数据格式化为前台需要的格式
-      let seatList = self.formatSeatList(seatTimeQuantumList);
-      addUserId(userId);
-      addCourseDuration({ id: durationId, name: 'xxxxx' });
+      let seatList = self.formatSeatList(seatDetrailsList, userId);
+      // weeks周几  timeline 几点到几点  teacherLocation 教师位置
+      self.setState({ weeks: timeOne, timeline: timeTwo, teacherLocation: teacherLocation });
+      // 将选座时需要使用的id存入redux state中
+      addIdList({ userId: userId, durationId: durationId, courseId: courseId });
+      //修改座位list
       changeSeats(seatList);
     }).catch((e) => { console.log(e); });
   }
 
-  formatSeatList(seatTimeQuantumList) {
-    const seatId = this.props.seatId;
+  formatSeatList(seatTimeQuantumList, userId) {
     return seatTimeQuantumList.map((item) => {
       //status 1 未选中 2 已选中 3 不能选
       let status = 0;
-      if (seatId === item.id && item.check_state === '1') {
-        status = 2;
-      } else {
-        status = item.check_state === '1' ? 1 : 3;
+      if (item.check_state === '1') {
+        status = 1;
+      } else if (item.check_state === '3') {
+        //当座位是备选状态时  如果选择这个座位的user是当前user，需要将当前座位的type变为2  颜色为绿色
+        if (item.user_id === userId) {
+          const { changeSeatRequiredStatus, addOldSeatId } = this.props;
+          status = 2;
+          // changeSeatRequiredStatus修改座位保存时是否需要加上旧坐标的标识符
+          changeSeatRequiredStatus(true);
+          // 保存旧座位id
+          addOldSeatId(item.id);
+        } else {
+          status = 3;
+        }
       }
       return { _id: item.id, id: +item.coordinate, status: status };
     });
   }
 
   render() {
-    const { seats, duration } = this.props;
+    const { seats } = this.props, state = this.state;
 
     return (
       <div id='selectSeatRoot'>
         <div className="Select-duration-header">
           <div className="Select-duration-title">选择时段</div>
           <div className="Select-duration-content">
-            {duration.name}
+            {state.weeks + state.timeline}
           </div>
         </div>
-        <SelectSeat seats={seats} />
+        <SelectSeat seats={seats} location={state.teacherLocation} />
       </div>
     );
   }
@@ -58,16 +71,16 @@ const mapStateToProps = (state) => {
   const stateData = state.seatPage;
   return {
     seats: stateData.seats,
-    seatId: stateData.seatId,
-    duration: stateData.duration
+    seatId: stateData.seatId
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    addUserId: actions.addUserId,
+    addIdList: actions.addIdList,
     changeSeats: actions.changeSeats,
-    addCourseDuration: actions.addCourseDuration
+    addOldSeatId: actions.addOldSeatId,
+    changeSeatRequiredStatus: actions.changeSeatRequiredStatus
   }, dispatch);
 }
 

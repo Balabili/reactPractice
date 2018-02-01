@@ -16,6 +16,153 @@ html {
     position: relative;
 }
 
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #DDDDDD;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #DDDDDD;
+    opacity: 1;
+}
+
+input:-ms-input-placeholder {
+    color: #DDDDDD;
+    opacity: 1;
+}
+
+input::-webkit-input-placeholder {
+    color: #DDDDDD;
+    opacity: 1;
+}
+
+/* B端选座 */
+
+.Business-seat-root {
+    background-color: #f5f5f5;
+    font-size: 0.8rem;
+    min-height: 100%;
+    padding-bottom: 2rem;
+}
+
+.Business-seat-information {
+    font-size: 0.8rem;
+}
+
+.Business-seat-information header {
+    padding: 0.5rem;
+    color: #6D6D6D;
+}
+
+.Business-seat-information-textbox {
+    display: flex;
+    display: -webkit-flex;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    background-color: #fff;
+    margin-bottom: 1px;
+}
+
+.Business-seat-information-textbox span {
+    margin-left: 1rem;
+}
+
+.Business-seat-information-textbox div {
+    margin-left: 0.5rem;
+}
+
+.Business-seat-information-textbox input {
+    border: 0;
+    padding-left: 0.5rem;
+}
+
+.Business-seat-container header {
+    padding: 0.5rem;
+    color: #6D6D6D;
+}
+
+.Business-seat-select-count {
+    padding-left: 1rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    background-color: #fff;
+    margin-bottom: 1px;
+}
+
+.Business-seat-table-container {
+    background-color: #fff;
+    color: #878787;
+}
+
+.Business-seat-header-container,
+.Business-seat-row-container {
+    display: flex;
+    display: -webkit-flex;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.Business-seat-header,
+.Business-seat-row {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+.Business-seat-header {
+    height: 1.5rem;
+}
+
+.Business-seat-row {
+    height: 2rem;
+}
+
+.Business-seat-header-sider {
+    width: 10%;
+    height: 1.5rem;
+}
+
+.Business-seat-row-sider {
+    width: 10%;
+    height: 2rem;
+    line-height: 2rem;
+}
+
+.Business-seat-header-column,
+.Business-seat-row-column {
+    display: inline-block;
+    width: 8%;
+    text-align: center;
+}
+
+.Business-seat-header-column {
+    height: 1.5rem;
+    line-height: 1.5rem;
+    word-break: keep-all;
+}
+
+.Business-seat-row-column {
+    height: 1.3rem;
+    background-size: 100% 100%;
+}
+
+.Business-seat-save-btn {
+    display: block;
+    margin: 2rem auto 0;
+    width: 50%;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    border-radius: 2.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #CE3935;
+    text-align: center;
+}
+
 /* 选座 */
 
 #selectSeatRoot {
@@ -32,10 +179,14 @@ html {
 }
 
 .Select-duration-title {
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
-.Select-duration-content {}
+.Select-duration-content {
+    min-height: 1.5rem;
+    line-height: 1.5rem;
+    font-size: 0.9rem;
+}
 
 .Duration-container {
     display: inline-block;
@@ -62,6 +213,7 @@ html {
     display: -webkit-flex;
     justify-content: space-between;
     margin-bottom: 1rem;
+    font-size: 1rem;
 }
 
 .Apply-user-count {
@@ -72,8 +224,9 @@ html {
     display: flex;
     display: -webkit-flex;
     justify-content: space-between;
-    width: 80%;
     margin: 0 auto;
+    margin-top: 1.2rem;
+    width: 80%;
 }
 
 .Select-seat-description-item {
@@ -84,7 +237,7 @@ html {
 
 .Select-seat-description img {
     width: 1.5rem;
-    height: 1.1rem;
+    height: 1.5rem;
     margin-right: 0.5rem;
 }
 
@@ -92,43 +245,46 @@ html {
     visibility: hidden;
 }
 
-.grey {
-    background-color: grey;
+.Select-seat-selected-title {
+    font-size: 0.9rem;
+    color: #ACACAC;
 }
 
-.green {
-    background-color: green;
-}
-
-.red {
-    background-color: red;
+.Select-seat-selected-seat {
+    font-size: 0.9rem;
+    color: black;
 }
 
 .Row-height {
-    height: 3rem;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 2.5rem;
     overflow: hidden;
 }
 
 .Ensure-seat {
     display: inline-block;
-    padding: 0.25rem 0.5rem;
+    padding: 0.4rem 0.5rem;
     min-height: 1rem;
     line-height: 1rem;
     background-color: #EC5343;
     border-radius: 4px;
+    font-size: 0.9rem;
     color: #fff;
 }
 
 .Seat-item {
-    display: inline-flex;
-    display: -webkit-inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 14.2%;
-    height: 100%;
+    display: block;
+    width: 9%;
+    height: 1.8rem;
+    background-size: 100% 100%;
 }
 
 .Seat-container {
+    margin-top: 1rem;
     width: 100%;
     overflow: scroll;
     height: 18rem;
@@ -148,22 +304,39 @@ html {
 .Store-seat-container {
     padding: 0.5rem;
     min-height: 30rem;
-    background-color: #f5f5f5;
 }
 
 .Store-seat-container header {
-    font-size: 0.9rem;
-    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    color: black;
 }
 
 .Store-seat-header-date {
     color: #B2B2B2;
 }
 
+.Competition-zone-template {
+    display: flex;
+    display: -webkit-flex;
+    min-height: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: black;
+}
+
+.Competition-zone-template span {
+    display: inline-block;
+    margin-right: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
 .Store-Seat-container {
     min-height: 10rem;
     width: 100%;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     background-color: #fff;
 }
 
@@ -283,6 +456,12 @@ html {
     background-color: inherit;
     color: red;
     font-size: 1rem;
+}
+
+.Schedule-header-place {
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+    color: #B3B3B3;
 }
 
 .Selector-month-container .ant-select-arrow {
@@ -407,12 +586,968 @@ html {
     height: 100%;
 }
 
+/*首页-课程详情 轮播图*/
+
+#courseDetails {
+    min-height: 100%;
+    background: #f5f5f5;
+}
+
+.course-step {
+    padding: 5px 20vw;
+    background: #d63334;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+}
+.course-step:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+.course-stance {
+    height: 2.5rem;
+}
+
+.course-step-li {
+    float: left;
+    width: 20vw;
+    text-align: center;
+    font-size: 1rem;
+}
+.course-step-li a {
+    color: #f7ffff;
+}
+
+.course-step-word {
+    margin-bottom: 5px;
+}
+
+.course-step-flag {
+    width: 6vw;
+    height: 2px;
+    background: #d63334;
+    margin: auto;
+}
+.active {
+    background: #fffffd !important;
+}
+
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 13.125rem;
+    line-height: 13.125rem;
+    background: #364d79;
+    overflow: hidden;
+}
+
+.Course-features {
+    background: #ffffff url("../images/shiting.jpg") no-repeat 95% center;
+    border-bottom: 1px solid #dddddd;
+    padding-left: 9px;
+    padding-bottom: 0.6rem;
+    background-size: 3.94rem;
+}
+
+.Course-features:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.Education-price {
+    padding-bottom: 0.6rem;
+    padding-top: 0.6rem;
+    float: left;
+    width: 100%;
+}
+
+.Education-price-li {
+    font-size: 0.8rem;
+}
+
+.Education-price-li:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.Education-price-float {
+    float: left;
+}
+
+.Education-feature {
+    float: left;
+    min-width: 1px;
+    padding: 0.1rem 6px;
+    font-size: 0.75rem;
+    text-align: center;
+    vertical-align: middle;
+    color: #969696;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    margin-right: 0.5rem;
+}
+
+.Education-price-sale {
+    min-width: 1px;
+    height: 1.5rem;
+    padding: 0 6px;
+    font-size: 0.75rem;
+    text-align: center;
+    /* line-height: 1.3125rem; */
+    vertical-align: middle;
+    color: #d03932;
+    border: 1px solid #d03932;
+    border-radius: 10px;
+    margin-right: 0.5rem;
+}
+
+.Education-price-coursename {
+    height: 1.5rem;
+    line-height: 1.5rem;
+    color: #343434;
+    font-size: 1rem;
+}
+
+.Education-price-presentprice {
+    height: 2.1825rem;
+    line-height: 2.1825rem;
+    font-size: 1.1rem;
+    color: #d33335;
+    margin-right: 0.875rem;
+}
+
+.Education-price-originalprice {
+    height: 2.1825rem;
+    line-height: 2.1825rem;
+    font-size: 0.8rem;
+    color: #989898;
+    text-decoration: line-through;
+}
+
+.Education-price-graduate {
+    height: 1.125rem;
+    line-height: 1.125rem;
+    color: #999999;
+    margin-right: 1.6rem;
+}
+
+.Education-price-person {
+    height: 1.125rem;
+    line-height: 1.125rem;
+    color: #999999;
+}
+
+.Education-times {
+    background: #ffffff;
+    padding: 0.6rem 9px;
+}
+
+.Education-times:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.Education-times-left {
+    float: left;
+}
+
+.Education-times-right {
+    float: right;
+}
+.Education-times-l-li {
+    padding-left: 25px;
+    font-size: 0.875rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    color: #353535;
+}
+
+.Education-times-l-name {
+    background-size: 1rem;
+
+}
+.Education-times-l-date {
+    background: url("../images/iconclock.jpg") no-repeat left center;
+    background-size: 1rem;
+}
+.Education-times-l-place {
+    color: #23a308;
+    background: url("../images/iconplace.jpg") no-repeat left center;
+    background-size: 1rem;
+}
+
+.Education-times-r-introduce {
+    color: #d43424;
+    font-size: 0.875rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
+}
+
+.Education-times-r-total {
+    color: #b6b6b6;
+    font-size: 0.875rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    text-align: right;
+}
+
+.timeandseat {
+    padding-left: 9px;
+    margin: 0.6rem 0;
+    background: #fff url("../images/icongo.jpg") no-repeat 95% center;
+    background-size: 0.5rem;
+    font-size: 0.875rem;
+    height: 3rem;
+    line-height: 3rem;
+    color: #343434;
+}
+
+.iconred {
+    color: #de333c;
+}
+
+.discounts {
+    padding: 0 36px 0 9px;
+    background: #fff url("/static/media/icongo.177a673c.jpg") no-repeat 95% center;
+    background-size: 0.5rem;
+    font-size: 0.875rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-bottom: 1px solid #dddddd;
+    color: #343434;
+}
+
+.discounts:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.discounts-left {
+    float: left;
+}
+
+.discounts-right {
+    float: right;
+    color: #a5a5a5;
+}
+
+.integral {
+    padding: 0 36px 0 9px;
+    background: #fff url("/static/media/icongo.177a673c.jpg") no-repeat 95% center;
+    background-size: 0.5rem;
+    font-size: 0.875rem;
+    height: 3rem;
+    line-height: 3rem;
+    color: #343434;
+    border-bottom: 1px solid #dddddd;
+}
+
+.integral:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.integral-left {
+    float: left;
+}
+
+.integral-right {
+    float: right;
+    color: #a5a5a5;
+}
+
+.iconback {
+    background: url("../images/iconback.jpg") no-repeat center;
+    background-size: cover;
+    text-align: center;
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 0.8rem;
+    color: #989898;
+}
+
+.Course-comment {}
+
+.Course-comment-ul {
+    padding: 0.6rem 9px;
+    border-bottom: 1px solid #dddddd;
+    background: #fff;
+}
+
+.Course-comment-li {
+    position: relative;
+    display: flex;
+    display: -webkit-flex;
+    padding-bottom: 0.6rem;
+}
+
+.Course-comment-img {
+    float: left;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: 1px solid #dfdfdf;
+    border-radius: 50%;
+}
+
+.Course-comment-name {
+    min-width: 45%;
+    padding-left: 0.5rem;
+}
+
+.Course-comment-name:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.Course-comment-name-name {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    height: 1.25rem;
+    font-size: 1rem;
+    color: #222222;
+    margin-bottom: 0.4rem;
+    margin-top: 0.4rem;
+}
+
+.Course-comment-name-name img {
+    margin-left: 0.2rem;
+    height: 1rem;
+    width: 1rem;
+}
+
+.Course-comment-name-data {
+    width: 100%;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: 0.8rem;
+    color: #777777;
+}
+
+.Course-comment-praise {
+    position: absolute;
+    right: 0;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: 1rem;
+    margin-top: 0.4rem;
+    color: #777777;
+}
+
+.Course-comment-praise img {
+    height: 1rem;
+    width: 1rem;
+    margin-right: 0.5rem;
+}
+
+.Course-comment-li-main {
+    font-size: 0.9rem;
+    color: #777;
+    line-height: 1.5rem;
+}
+
+.showcomment-img {
+    float: left;
+    width: 32%;
+    height: 7rem;
+    margin-right: 2%;
+}
+
+.showcomment-img:last-child {
+    margin-right: 0;
+}
+
+.checkcomment {
+    text-align: center;
+    height: 3rem;
+    line-height: 3rem;
+    color: #999;
+    background: #fff;
+    font-size: 0.8rem;
+}
+
+.school-details-box:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.school-details-box {
+    padding: 0.6rem 9px;
+    background: #fff;
+}
+
+.school-logo {
+    float: left;
+    width: 28%;
+    height: 28vw;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+
+.school-details {
+    float: left;
+    padding-left: 5%;
+    width: 72%;
+}
+.school-details-name {
+    font-size: 1rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    color: #2e2e2e;
+    margin-bottom: 0.8rem;
+}
+.school-details-pass {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-block;
+    margin-left: 0.5rem;
+    background: url("../images/iconpass.jpg") no-repeat left bottom;
+    background-size: 60%;
+}
+.school-details-introduce {
+    font-size: 0.875rem;
+    color: #535353;
+}
+
+.Course-detail-root {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: #fff;
+}
+
+.Course-detail-root img {
+    width: 100%;
+}
+
+.Course-detail-video {
+    margin-bottom: 0.5rem;
+}
+
+.Course-tv {
+    padding-bottom: 1rem;
+}
+
+.Course-detail-video span {
+    display: inline-block;
+    width: 100%;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.tvshow-box {
+    padding: 0.6rem 9px;
+    background: #fff;
+}
+
+.tvshow-img {
+    width: 100%;
+}
+.tvshow-com {
+    font-size: 1.125rem;
+    color: #333333;
+}
+
+.teacherdetail-box {
+    padding: 0.6rem 9px;
+    background: #fff;
+}
+.teacherdetail-box:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.teacherdetail-img {
+    float: left;
+    width: 11%;
+    height: 11vw;
+    border-radius: 50%;
+}
+
+.teacherdetail-main {
+    width: 80%;
+    float: left;
+    padding-left: 0.6rem;
+}
+
+.teacherdetail-main-li {
+    margin-bottom: 0.6rem;
+}
+
+.teacherdetail-main-li:last-child {
+    margin-bottom: 0;
+}
+.teacherdetail-main-li:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.teacher-name {
+    float: left;
+    color: #333333;
+    font-size: 1.125rem;
+    height: 1.125rem;
+    line-height: 1.125rem;
+    margin-right: 0.4rem;
+}
+
+.teacher-feature {
+    float: left;
+    height: 1.25rem;
+    line-height: 1.25rem;
+    padding: 0 6px;
+    border: 1px solid #dddddd;
+    border-radius: 20px;
+    color: #989898;
+    font-size: 0.8rem;
+    margin-right: 0.4rem;
+}
+
+.teacherwork {
+    font-size: 0.8rem;
+    height: 1rem;
+    line-height: 1rem;
+    color: #989898;
+}
+
+.teacherdetail {
+    font-size: 0.8rem;
+    line-height: 1.25rem;
+    color: #2f2f2f;
+}
+
+.Course-introduce {
+    padding: 0.6rem 9px;
+    font-size: 0.8rem;
+    color: black;
+    background: #fff;
+}
+
+.Course-introduce img {
+    width: 100%;
+}
+
+.schoolintroduce-box {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #2f2f2f;
+    margin-bottom: 0.25rem;
+}
+
+.schoolintroduce-pic-box {
+    width: 100%;
+}
+.Course-recommend {
+    padding: 0 9px;
+}
+.Course-recommend:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+.Course-recommend-nomore {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    color: #9B9B9B;
+}
+
+.courserecommend-box {
+    float: left;
+    position: relative;
+    background: #fff;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    width: 48%;
+    min-height: 52vw;
+    margin-right: 4%;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.5rem;
+    overflow: hidden;
+}
+.courserecommend-box:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.courserecommend-box:nth-child(even) {
+    margin-right: 0;
+}
+
+.Course-recommend-course-root {
+    position: relative;
+}
+
+.Course-recommend-img-container {
+    position: relative;
+}
+
+.Course-recommend-mengceng {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.4;
+}
+
+.courserecommend-img {
+    width: 100%;
+    height: 39vw;
+    margin-bottom: -5px;
+}
+
+.courserecommend-person {
+    position: absolute;
+    bottom: 0.6rem;
+    right: 1rem;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.courserecommend-person img {
+    margin-right: 0.2rem;
+    height: 0.9rem;
+    width: 0.9rem;
+}
+
+.Course-recommend-course-cover {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.4;
+}
+
+.courserecommend-name {
+    font-size: 1rem;
+    height: 1.3rem;
+    line-height: 1.3rem;
+    margin: 1vw 0;
+    padding-left: 0.6rem;
+    color: #343434;
+}
+.courserecommend-price {
+    font-size: 0.9rem;
+    height: 1.125rem;
+    line-height: 1.125rem;
+    padding-left: 0.6rem;
+    color: #d63432;
+}
+
+.Course-recommend-person {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+.Course-recommend-person img {
+    height: 1rem;
+    width: 1rem;
+    margin-right: 0.25rem;
+}
+
+.end {
+    float: left;
+    width: 100%;
+    height: 1.85rem;
+    font-size: 1.25rem;
+    line-height: 1rem;
+    text-align: center;
+    color: #999999;
+}
+
+/* ~~~~旗舰店~~~~ */
+#multipleShop {
+    background: #f5f5f5;
+}
+.Multiple-list {
+    padding-top: 0.6rem;
+}
+
+.Multiple-list:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+.Multiple-box {
+    float: left;
+    width: 17%;
+    margin: 0 4% 0.6rem;
+}
+.Multiple-img {
+    width: 17vw;
+    height: 17vw;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.Multiple-name {
+    text-align: center;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    color: #1f1f1f;
+}
+
+.Multiple-tv {
+    float: left;
+    width: 100%;
+    height: 5rem;
+    background: url("../images/四月是你的谎言.jpg") no-repeat center;
+    background-size: cover;
+    position: relative;
+}
+
+.Multiple-tv-btn {
+    height: 1.5rem;
+    width: 5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    background: #e2e4e3;
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.multiple-flag {
+    padding: 0 9px;
+    margin-top: 1rem;
+    background: #fff;
+}
+
+.multiple-flag:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.multiple-kind {
+    float: left;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    font-size: 1rem;
+    color: #212121;
+    padding-left: 1.5rem;
+    background: url("../images/iconflag.jpg") no-repeat left center;
+    background-size: 1rem;
+}
+
+.multiple-more {
+    float: right;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    font-size: 0.875rem;
+    color: #9b9b9b;
+}
+
+.Multiple-extra {
+    background: #fff;
+    margin-bottom: 0.6rem;
+}
+
+.Multiple-extra-box {
+    padding: 0.6rem 9px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.Multiple-extra-box:last-child {
+    border-bottom: 0;
+}
+
+.Multiple-extra-box:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.Multiple-extra-img {
+    float: left;
+    width: 31.2%;
+    margin-right: 2.4%;
+    height: 25.8vw;
+}
+
+.Multiple-extra-star-container {
+    margin-top: 0.3rem;
+    margin-bottom: 0.7rem;
+}
+
+.Multiple-extra-star-container img {
+    margin-left: 0.2rem;
+    height: 0.9rem;
+    width: 0.9rem;
+}
+
+.Multiple-extra-name {
+    float: left;
+    width: 66.4%;
+}
+
+.Multiple-extra-shop {
+    font-size: 1rem;
+    line-height: 1rem;
+    color: #202020;
+}
+
+.Multiple-extra-clear:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.Multiple-extra-left {
+    float: left;
+    font-size: 1rem;
+    color: #9a9a9a;
+    line-height: 1.25rem;
+}
+.Multiple-extra-right {
+    float: right;
+    color: #d62e2b;
+    font-size: 1rem;
+    line-height: 1.25rem;
+}
+.Course-recommend .end {
+    display: none;
+}
+#multipleShop .Course-recommend {
+    background: #fff;
+}
+#multipleShop .school-details-pass {
+    display: none;
+}
+
+#multipleShop .school-details-box {
+    margin: 0;
+}
+
+#multipleShop .Multiple-school {
+    margin-bottom: 0.6rem;
+}
+
+.Course-carousel {
+    width: 100%;
+    height: 10rem;
+    overflow: hidden;
+}
+
+.Multiple-teacher {
+    display: flex;
+    display: -webkit-flex;
+    padding-top: 1rem;
+    justify-content: space-around;
+    background-color: #fff;
+}
+
+.Multiple-teacher:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+}
+.Multiple-teacher-box {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+.Multiple-teacher-img {
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+    margin-bottom: 0.6rem;
+}
+
+.Multiple-teacher-name {
+    color: #303030;
+    font-size: 0.875rem;
+    line-height: 0.875rem;
+    text-align: center;
+    margin-bottom: 0.6rem;
+}
+
+.Multiple-teacher-school {
+    width: 90%;
+    margin-bottom: 0.6rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 0.875rem;
+    font-size: 0.875rem;
+    text-align: center;
+    color: #858585;
+}
+
+.Multiple-teacher-clear {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 0.6rem;
+}
+
+.Multiple-teacher-float {
+    float: left;
+    width: 40%;
+    margin: 0 2%;
+    border: 1px solid #dcdcdc;
+    text-align: center;
+    border-radius: 10px;
+}
+
 /* 教师课程表 */
 
 .Teacher-schedule-container {
     width: 95%;
     margin: 0 auto;
-    border: 2px solid #F4F4F4;
+    border: 1px solid #F4F4F4;
     border-radius: 10px;
 }
 
@@ -433,7 +1568,7 @@ html {
     border: 0;
     background-color: inherit;
     color: black;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .Teacher-selector-container .ant-select-arrow {
@@ -444,7 +1579,7 @@ html {
 
 .View-all-schedule {
     margin-right: 0.5rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #B9B9B9;
 }
 
@@ -473,6 +1608,7 @@ html {
 .Teacher-schedule-lesson-container {
     width: 100%;
     background-color: #F9E1E1;
+    border-radius: 4px;
 }
 
 .Teacher-schedule-section-item {
@@ -518,10 +1654,21 @@ html {
 /* 我的日程 */
 
 .User-schedule-root {
-    background-color: #D63334;
+    position: relative;
+    height: 100%;
+    background-color: #f5f5f5;
+}
+
+.User-schedule-bg-red {
+    position: absolute;
+    top: 0;
+    height: 8rem;
+    width: 100%;
+    background-color: #d53434;
 }
 
 .User-schedule-container {
+    position: relative;
     width: 95%;
     margin: 0 auto;
 }
@@ -557,7 +1704,7 @@ html {
 }
 
 .User-schedule-table {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     border: 1px solid #ECECEC;
     border-radius: 8px;
 }
@@ -641,12 +1788,15 @@ html {
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
     color: black;
+    background-color: #fff;
 }
 
 /* 学校详情页 */
 
 .School-root {
+    position: relative;
     background-color: #f5f5f5;
+    padding-bottom: 3rem;
 }
 .School-detail-header-section {
     padding-top: 1rem;
@@ -679,6 +1829,11 @@ html {
     font-size: 0.9rem;
 }
 
+.School-name span {
+    color: #DE505A;
+    margin-left: 0.5rem;
+}
+
 .School-fans {
     color: #767678;
 }
@@ -697,15 +1852,56 @@ html {
 
 .School-introduce {
     min-height: 5rem;
-    padding-left: 1rem;
-    padding-right: 0.5rem;
+    padding: 0.3rem 0.5rem 0.3rem 1rem;
     font-size: 0.9rem;
     color: black;
-    background-color: #f5f5f5;
+}
+
+.School-introduce img {
+    height: 1.4rem;
+    width: 1.4rem;
+}
+
+.School-introduce-detail {
+    display: flex;
+    display: -webkit-flex;
+    align-items: flex-start;
+    min-height: 1.5rem;
 }
 
 .School-address {
+    display: flex;
+    display: -webkit-flex;
+    align-items: flex-start;
+    min-height: 1.5rem;
     color: #61AF47;
+}
+
+.School-subschool {
+    padding: 1rem 0;
+    background-color: #f5f5f5;
+}
+
+.School-subschool-detail {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 2.5rem;
+    margin-bottom: 1px;
+    color: black;
+    background-color: #fff;
+    font-size: 0.8rem;
+}
+
+.School-subschool-detail span {
+    margin-left: 0.5rem;
+}
+
+.School-subschool-detail img {
+    height: 0.8rem;
+    width: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 .School-description {
@@ -713,8 +1909,16 @@ html {
     font-size: 1rem;
 }
 
+.School-description-header {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
 .School-description-image-container {
     overflow: hidden;
+    margin-bottom: 1rem;
 }
 
 .School-description img {
@@ -722,17 +1926,30 @@ html {
 }
 
 .School-description-detail {
+    margin-top: 0.5rem;
     font-size: 0.75rem;
 }
 
 .Recommend-lesson-section {
+    margin-top: 1rem;
+    padding-bottom: 1rem;
     background-color: #fff;
 }
 
 .Recommend-lesson-section header {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
     width: 95%;
-    margin: 1rem auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin: 0 auto;
     font-size: 1rem;
+}
+
+.School-detail-header-icon {
+    height: 1.5rem;
+    width: 1.5rem !important;
 }
 
 .Recommend-lesson-list-container {
@@ -742,13 +1959,12 @@ html {
     flex-wrap: wrap;
     width: 95%;
     margin: 0 auto;
-    height: 3rem;
 }
 
 .Recommend-lesson-item {
     border: 1px solid #f5f5f5;
     margin-bottom: 0.2rem;
-    height: 10rem;
+    min-height: 10rem;
     width: 49%;
 }
 .Recommend-lesson-item-image-container {
@@ -761,7 +1977,405 @@ html {
     width: 100%;
 }
 
+.Recommend-lesson-item-coverage {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.4;
+}
+
+.Recommend-lesson-item-people {
+    position: absolute;
+    color: #fff;
+    right: 1rem;
+    bottom: 0.5rem;
+}
+
+.Recommend-lesson-item-name {
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.Recommend-lesson-item-price {
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+    color: #D53037;
+}
+
+.School-detail-teacher-container {
+    margin-top: 1rem;
+    width: 100%;
+    min-height: 10rem;
+    background-color: #fff;
+}
+
+.School-detail-teacher-container header {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.School-detail-teacher-item {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    min-height: 7rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #F7F7F7;
+}
+
+.School-detail-teacher-item img {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    height: 6rem;
+    width: 6rem;
+    border: 1px solid #EEEEEE;
+}
+
+.School-detail-teacher-details {
+    height: 6.5rem;
+    width: 60%;
+    font-size: 1rem;
+}
+
+.School-detail-teacher-introduce {
+    font-size: 0.9rem;
+    color: #989898;
+}
+
+.School-detail-schedule-container {
+    margin-top: 1rem;
+    background-color: #fff;
+    padding-bottom: 1.5rem;
+}
+
+.School-detail-schedule-container header {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    width: 95%;
+    margin: 0 auto;
+    font-size: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.School-detail-footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 3rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #BB2927;
+}
+
+.School-detail-footer div {
+    width: 49.9%;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    background-color: #D43434;
+}
+
+/* 教师详情页 */
+
+.Teacher-detail-root {
+    position: relative;
+    width: 100%;
+    background-color: #f5f5f5;
+    padding-bottom: 2.5rem;
+}
+
+.Teacher-detail-header {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 95%;
+}
+
+.Teacher-detail-header img {
+    width: 25%;
+    height: 9rem;
+}
+
+.Teacher-detail-header-content {
+    width: 70%;
+}
+
+.Teacher-detail-header-title {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    font-size: 1rem;
+}
+
+.Teacher-detail-header-price {
+    font-size: 0.9rem;
+    color: #D63433;
+}
+
+.Teacher-detail-description {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #545454;
+}
+
+.Teacher-detail-key {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    width: 4rem;
+    justify-content: space-between;
+}
+
+.Teacher-detail-value {
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    flex-direction: column;
+    margin-left: 0.5rem;
+}
+
+.Teacher-experience {
+    padding: 0.5rem;
+    background-color: #fff;
+}
+
+.Teacher-experience header {
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    font-size: 1rem;
+}
+
+.Teacher-experience-detail {
+    color: #B5B5B5;
+}
+
+.Teacher-experience-detail img {
+    width: 100%;
+}
+
+.Teacher-experience footer {
+    margin: 0.5rem 0;
+    text-align: center;
+    color: #D6342D;
+}
+
+.Teacher-video-container {
+    padding: 0.5rem;
+}
+
+.Teacher-video-container header {
+    font-size: 1rem;
+}
+
+.Teacher-video-list {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 0.2rem;
+}
+
+.Teacher-video-item {
+    width: 49%;
+    margin-bottom: 0.25rem;
+    background-color: #fff;
+}
+
+.Teacher-video-item div {
+    position: relative;
+    width: 100%;
+}
+
+.Teacher-video-item img {
+    width: 100%;
+    height: 7rem;
+}
+
+.Teacher-video-item > span {
+    padding: 0.25rem;
+    font-size: 0.8rem;
+}
+
+.Teacher-video-time {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    padding: 0 0.3rem;
+    border-radius: 1rem;
+    background-color: black;
+    opacity: 0.5;
+    color: #fff;
+}
+
+.Teacher-detail-schedule-container {
+    padding: 0.5rem;
+    background-color: #fff;
+}
+
+.Teacher-detail-schedule-container header {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.Teacher-detail-lesson-container {
+    padding: 0.5rem;
+    background-color: #fff;
+}
+
+.Teacher-detail-lesson-container header {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.Teacher-lesson-item {
+    position: relative;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.Teacher-lesson-item footer {
+    padding: 0.25rem 0;
+    color: #999999;
+    font-size: 0.8rem;
+}
+
+.Teacher-lesson-item-container {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    min-height: 5rem;
+}
+
+.Teacher-lesson-item-container img {
+    width: 30%;
+    height: 100%;
+}
+
+.Teacher-lesson-item-container-details {
+    padding-right: 2rem;
+    width: 65%;
+    font-size: 0.8rem;
+    color: #999999;
+}
+
+.Teacher-lesson-item-name {
+    color: black;
+}
+
+.Teacher-lesson-item-container-details-line {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+}
+
+.Teacher-lesson-item-font-red {
+    color: #D92E37;
+}
+
+.Teacher-lesson-item-invalid-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.4;
+}
+
+.Teacher-lesson-item-invalid-container img {
+    position: absolute;
+    right: 5rem;
+    top: 50%;
+    margin-top: -3.125rem;
+    width: 6.25rem;
+    height: 6.25rem;
+}
+
+.Teacher-detail-footer {
+    height: 5rem;
+    line-height: 5rem;
+    text-align: center;
+    color: #999999;
+    font-size: 1rem;
+}
+
+.Teacher-detail-button {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    background-color: #D43434;
+}
+
+/* 图文混排 */
+#banner-root {
+    width: 100%;
+}
+
+#banner-root img {
+    width: 100%;
+}
+
 /* 课程推广 */
+
+.Banner-root {
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+.Banner-root header {
+    width: 100%;
+}
+
+.Banner-root header img {
+    width: 100%;
+}
+
+.Banner-area-container {
+    margin-top: 0.5rem;
+}
+
+.Banner-area-container > header {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    height: 2.2rem;
+    font-size: 1.1rem;
+    background-color: #fff;
+}
+
+.Banner-area-icon {
+    height: 1.5rem;
+    width: 1.5rem !important;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.Banner-area-english-name {
+    margin-left: 0.1rem;
+    font-size: 0.6rem;
+    color: #9F9F9F;
+}
 
 .Template-one-container {
     display: flex;
@@ -769,7 +2383,6 @@ html {
     justify-content: space-between;
     height: 10rem;
     width: 100%;
-    background-color: #f5f5f5;
 }
 
 .Template-one-image {
@@ -782,11 +2395,12 @@ html {
 .Template-one-text-container {
     width: 50%;
     margin-right: 0.5rem;
+    padding-top: 0.5rem;
     font-size: 1rem;
 }
 
 .Template-one-title {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: black;
 }
 
@@ -816,14 +2430,20 @@ html {
     min-height: 10rem;
     padding-bottom: 1.5rem;
     width: 100%;
-    background-color: #e5e5e5;
 }
 
 .Template-two-header {
-    height: 2rem;
-    line-height: 2rem;
-    font-size: 1.2rem;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    height: 2.5rem;
+    font-size: 1rem;
     color: black;
+}
+
+.Template-two-header img {
+    height: 1.5rem;
+    width: 1.5rem;
 }
 
 .Template-two-body {
@@ -863,7 +2483,6 @@ html {
 
 .Template-three-container {
     min-height: 10rem;
-    background-color: #f5f5f5;
     padding-bottom: 1rem;
 }
 
@@ -910,12 +2529,12 @@ html {
     min-height: 10rem;
     padding: 0.5rem 0.5rem 1rem;
     font-size: 0.8rem;
-    background-color: #e5e5e5;
     color: black;
 }
 
 .Template-four-container img {
     width: 100%;
+    height: 10rem;
 }
 
 .Template-four-container header {
@@ -944,7 +2563,6 @@ html {
 
 .Template-five-container {
     min-height: 10rem;
-    background-color: #f5f5f5;
     padding-bottom: 1rem;
 }
 
@@ -962,4 +2580,19 @@ html {
 .Template-five-container-item img {
     width: 100%;
     height: 7rem;
+}
+
+.Template-five-container-item div {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.Template-five-item-price {
+    color: #DF464B;
+}
+
+.Template-five-item-price span {
+    font-size: 1rem;
+    color: #DF464B;
 }

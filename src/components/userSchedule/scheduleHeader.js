@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getCurrentWeekDateList } from '../../api/classSchedule';
+import { getCurrentWeekDateList } from '../../api/commonApi';
 
 class ScheduleHeader extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 

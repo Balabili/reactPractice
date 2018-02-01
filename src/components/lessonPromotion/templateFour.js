@@ -1,6 +1,5 @@
 import React from 'react';
 import ClampLines from '../common/clamp';
-import imgUrl from '../../images/四月是你的谎言.jpg';
 
 class TemplateFour extends React.Component {
   constructor() {
@@ -9,23 +8,23 @@ class TemplateFour extends React.Component {
   }
 
   render() {
-    const text_to_clamp = '来上课你就是我大爷，来上课你就是我大爷，来上课你就是我大爷，来上课你就是我大爷，来上课你就是我大爷，来上课你就是我大爷，来上课你就是我大爷，来上课你就是我大爷';
-
+    const { data, tempIndex } = this.props;
+    
     return (
-      <section className='Template-four-container'>
-        <img src={imgUrl} alt='xxx' />
-        <header>JS从入门到崩溃</header>
-        <div className='Template-four-lesson-teacher'>讲师：你大爷</div>
+      <section className='Template-four-container' style={{ backgroundColor: tempIndex % 2 ? '#e5e5e5' : '#f5f5f5' }}>
+        <img src={data.img} alt='' />
+        <header>{data.name}</header>
+        <div className='Template-four-lesson-teacher'>讲师：{data.teacher}</div>
         <div className='Template-four-lesson-description'>
           <ClampLines
-            text={text_to_clamp}
+            text={data.remark}
             lines="3"
             ellipsis="..."
             buttons={false} />
         </div>
         <div>
-          <span className='Template-four-lesson-new-price'><span>￥</span>5555</span>
-          <span className='Template-four-lesson-old-price'>￥8888.00</span>
+          <span className='Template-four-lesson-new-price'><span>￥</span>{data.editPrice}</span>
+          <span className='Template-four-lesson-old-price'>￥{data.zeroPrice}</span>
         </div>
       </section>
     );

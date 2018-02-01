@@ -1,6 +1,5 @@
 import React from 'react';
 import ClampLines from '../common/clamp';
-import imgUrl from '../../images/四月是你的谎言.jpg';
 
 class TemplateThree extends React.Component {
   constructor() {
@@ -9,20 +8,20 @@ class TemplateThree extends React.Component {
   }
 
   render() {
-    const text_to_clamp = `爷你大爷你大爷你大爷你大爷你大爷你大爷你大爷你大爷你大爷你大爷你大爷你大爷你大爷你大爷你`;
+    const { data, tempIndex, remark } = this.props;
 
     return (
-      <section className='Template-three-container'>
+      <section className='Template-three-container' style={{ backgroundColor: tempIndex % 2 ? '#e5e5e5' : '#f5f5f5' }}>
         <div className='Template-three-image-container'>
-          <img className='Template-three-image-main' src={imgUrl} alt='xxx'></img>
+          <img className='Template-three-image-main' src={data[0].img} alt=''></img>
           <div className='Template-three-image-side'>
-            <img src={imgUrl} alt='xxx'></img>
-            <img src={imgUrl} alt='xxx'></img>
+            <img src={data[1].img} alt=''></img>
+            <img src={data[2].img} alt=''></img>
           </div>
         </div>
         <div className='Template-three-description'>
           <ClampLines
-            text={text_to_clamp}
+            text={remark}
             lines="3"
             ellipsis="..."
             buttons={false} />

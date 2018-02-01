@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import ScheduleSection from './scheduleSection';
 
 class ScheduleLessonList extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 
@@ -13,9 +13,9 @@ class ScheduleLessonList extends React.Component {
     
     return (
       <div className='Teacher-schedule-lesson-container'>
-        <ScheduleSection duration='上午' lessonList={lessonList.fornoon || []}></ScheduleSection>
-        <ScheduleSection duration='下午' lessonList={lessonList.afternoon || []}></ScheduleSection>
-        <ScheduleSection duration='晚上' lessonList={lessonList.night || []}></ScheduleSection>
+        <ScheduleSection duration='上午' lessonList={lessonList.forenoonList || []}></ScheduleSection>
+        <ScheduleSection duration='下午' lessonList={lessonList.afternoonList || []}></ScheduleSection>
+        <ScheduleSection duration='晚上' lessonList={lessonList.nightList || []}></ScheduleSection>
       </div>
     );
   }

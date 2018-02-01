@@ -1,18 +1,19 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { changeSelectedSeat } from '../../actions/classSeat';
+import imgActived from '../../images/seat_grey.png';
+import imgSelected from '../../images/seat_green.png';
+import imgDeactived from '../../images/seat_red.png';
+import * as actions from '../../actions/classSeat';
 
 class Seats extends React.Component {
+  //_id:真正id,   id:坐标,   status:1未选中,2自己选的,3别人选的
   constructor(props) {
     super(props);
     this.state = {
       seatList: [],
       row: [],
-      column: [],
-      //默认显示七列，每列宽度平均分配
-      rowWidth: { width: '100%' },
-      columnWidth: { width: '14.28%' },
-      rowHeight: { height: '3rem' }
+      column: []
     };
     this.changeSeat = this.changeSeat.bind(this);
   }
@@ -20,8 +21,6 @@ class Seats extends React.Component {
   componentWillReceiveProps(nextprops) {
     if (nextprops.seat !== this.props.seat) {
       this.initSeats(nextprops);
-    } else if (nextprops.isView !== this.props.isView) {
-      this.calculateColumnWidth(nextprops.isView);
     }
   }
 
@@ -36,14 +35,14 @@ class Seats extends React.Component {
       arr[seats[index].id]._id = seats[index]._id;
       arr[seats[index].id].status = seats[index].status;
     }
+    // 获取所有有效的座位  Row x column矩形
     seats = this.getValidSeats(arr, nextprops);
     this.setState({ seatList: seats });
   }
 
-  getValidSeats(arr, nextprops) {
+  getValidSeats(arr) {
     let seats = [], validRows = this.getInvalidRows(arr, true), validColumn = this.getInvalidRows(arr, false),
       rowLen = validRows.length, colLen = validColumn.length;
-    this.calculateColumnWidth(nextprops.isView, colLen, rowLen);
     this.setState({ row: validRows, column: validColumn });
     //留下有效的rowLen x colLen矩形座位
     for (let i = 0; i < rowLen; i++) {
@@ -78,62 +77,31 @@ class Seats extends React.Component {
     return validRows;
   }
 
-  calculateColumnWidth(isView, columnLength, rowLength) {
-    const colLen = columnLength || this.state.column.length, rowLen = rowLength || this.state.row.length;
-    if (colLen > 7) {
-      if (isView) {
-        this.setState({
-          rowWidth: { width: '100%' },
-          columnWidth: { width: (100 / colLen).toFixed(2) + '%' },
-        });
-      } else {
-        this.setState({
-          rowWidth: { width: (14.28 * colLen).toFixed(2) + '%' },
-          columnWidth: { width: (100 / colLen).toFixed(2) + '%' },
-        });
-      }
-    } else {
-      this.setState({
-        rowWidth: { width: '100%' },
-        columnWidth: { width: '14.28%' }
-      });
-    }
-    if (rowLen > 6) {
-      if (isView) {
-        this.setState({ rowHeight: { height: (18 / rowLen).toFixed(2) + 'rem' } });
-      } else {
-        this.setState({ rowHeight: { height: '3rem' } });
-      }
-    } else {
-      this.setState({ rowHeight: { height: '3rem' } });
-    }
-  }
-
   getColSeats(seats, index, columnLength) {
     let dom = [];
+    // 生成列
     for (let i = 0; i < columnLength; i++) {
       let seatIndex = index * columnLength + i,
         childDom = (
-          <span data-id={seats[seatIndex]._id} data-position={seats[seatIndex].id} key={i} style={this.state.columnWidth} className={`Seat-item ${this.getSeatItemClassName(seats[seatIndex].status)}`}>{seats[seatIndex].id}</span>
+          <span data-id={seats[seatIndex]._id} data-position={seats[seatIndex].id} key={i} style={{ backgroundImage: this.getBGImage(seats[seatIndex].status) }}
+            className={`Seat-item ${seats[seatIndex].status ? '' : 'hidden'}`}></span>
         );
       dom.push(childDom);
     }
     return dom;
   }
 
-  getSeatItemClassName(status) {
+  getBGImage(status) {
     switch (status) {
-      case 1: return 'grey';
-      case 2: return 'green';
-      case 3: return 'red';
-      default: return 'hidden';
+      case 1: return `url(${imgActived})`;
+      case 2: return `url(${imgSelected})`;
+      case 3: return `url(${imgDeactived})`;
+      default: return '';
     }
   }
 
   changeSeat(e) {
-    if (this.props.isView) {
-      return;
-    }
+    const { changeSelectedSeat } = this.props;
     let dataset = e.target.dataset, id = +dataset.position, _id = dataset.id;
     if (id) {
       let seats = this.state.seatList, len = seats.length;
@@ -143,7 +111,8 @@ class Seats extends React.Component {
           if (seats[i].status === 1) {
             //如果是未选中的，已选座位解除选择，当前点击的设为已选
             this.emptyAllSelectSeat(seats);
-            this.getSeatNumber(id, _id, seats);
+            this.getSeatNumber(id, seats);
+            changeSelectedSeat(_id);
             seats[i].status = 2;
             this.setState({ seatList: seats });
             break;
@@ -166,9 +135,12 @@ class Seats extends React.Component {
     }
   }
 
-  getSeatNumber(id, _id, seats) {
-    let rows = this.state.row, column = this.state.column, columnLen = column.length, seatPosition = {},
-      rowSeats = null, columnNumber = 0, durations = this.props.durations, durationLen = durations.length;
+  getSeatNumber(id, seats) {
+    if (!id) {
+      return;
+    }
+    const { changeSeatPosition } = this.props, state = this.state;
+    let rows = state.row, column = state.column, columnLen = column.length, seatPosition = {}, rowSeats = null, columnNumber = 0;
     //获取座位第几排
     seatPosition.row = rows.indexOf(Math.floor(id / 10)) + 1;
     //计算第几个座位
@@ -182,27 +154,41 @@ class Seats extends React.Component {
       }
     }
     seatPosition.column = columnNumber;
-    //获取当前时段
-    for (let i = 0; i < durationLen; i++) {
-      if (durations[i].selected) { 
-        seatPosition.duration = durations[i];
+    changeSeatPosition(seatPosition);
+  }
+
+
+  culculatePosition() {
+    const seat = this.state.seatList, len = seat.length;
+    let position = '';
+    for (let i = 0; i < len; i++) {
+      if (seat[i].status === 2) {
+        position = seat[i].id;
         break;
       }
     }
-    this.props.calculatePosition(seatPosition);
-    this.props.dispatch(changeSelectedSeat(_id));
+    this.getSeatNumber(position, seat);
   }
 
   render() {
-    let seats = this.state.seatList, rowLength = this.state.row.length, columnLength = this.state.column.length, seatList = [];
+    const { seatPosition } = this.props, state = this.state;
+    let seats = state.seatList, rowLength = state.row.length, columnLength = state.column.length, seatList = [];
+
+    // 当前user重新选择座位时  获取之前选择的座位坐标
+    if (seatPosition === null) {
+      this.culculatePosition();
+    }
+
+    // 生成行
     for (let i = 0; i < rowLength; i++) {
       let col = (
-        <div style={Object.assign({}, this.state.rowWidth, this.state.rowHeight)} className="Row-height" key={i}>
+        <div style={Object.assign({}, state.rowWidth, state.rowHeight)} className="Row-height" key={i}>
           {this.getColSeats(seats, i, columnLength)}
         </div>
       );
       seatList.push(col);
     }
+
     return (
       <div className="Seat-container" onClick={this.changeSeat}>{seatList}</div>
     );
@@ -210,11 +196,19 @@ class Seats extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  const stateData = state.seatPage;
   return {
-    courseId: state.seatPage.courseId,
-    seatId: state.seatPage.seatId,
-    durations: state.seatPage.durations
+    seatId: stateData.seatId,
+    seats: stateData.seats,
+    seatPosition: stateData.seatPosition
   }
 };
 
-export default connect(mapStateToProps)(Seats);
+const MapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    changeSelectedSeat: actions.changeSelectedSeat,
+    changeSeatPosition: actions.changeSeatPosition
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, MapDispatchToProps)(Seats);
